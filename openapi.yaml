@@ -1,24 +1,24 @@
 openapi: 3.0.3
 info:
-  title: DOKUMEN API E-KATALOG MOBILE - OpenAPI 3.0
+  title: DOKUMEN API SALON E-LEARNING - OpenAPI 3.0
   description: >-
     Jelaskan disini apa saja yang perlu dijelaskan
     termasuk informasi yang diperlukan untuk dinilai
     term of service isi dari link repo dari swagger ini
-  termsOfService: https://raulmahya123.github.io/sweggergis/
+  termsOfService: https://www.linkedin.com/in/raulmahya/
   contact:
     email: raulmahya11@gmail.com
   license:
-    name: E-KATALOG MOBILE
-    url: https://pkg.go.dev/github.com/Fancypedia/fancybackenddd
+    name: E-LEARNING SALON
+    url: https://pkg.go.dev/github.com/raulmahya123/salon
   version: 1.0.11
 externalDocs:
   description: Repo GCF
-  url: https://pkg.go.dev/github.com/Fancypedia/fancybackenddd
+  url: https://pkg.go.dev/github.com/raulmahya123/salon
 servers:
   - url: https://asia-southeast2-testlogin-366704.cloudfunctions.net
 paths:
-  /createaccount:
+  /create-account-salon:
     post:
       tags:
         - USER
@@ -39,7 +39,7 @@ paths:
                 $ref: '#/components/schemas/createaccount'
         '405':
           description: Invalid input
-  /getallusers:
+  /getalll-account:
     get:
       tags:
         - USER
@@ -57,7 +57,7 @@ paths:
           description: Invalid input
       security:
         - token: []
-  /loginn:
+  /create-account-user:
     post:
       tags:
         - USER
@@ -81,7 +81,7 @@ paths:
                   $ref: '#/components/schemas/AuthResponse'
         '400':
           description: Invalid input or request body
-  /gettoken:
+  /decode-token:
     post:
       tags:
         - USER
@@ -101,7 +101,7 @@ paths:
           description: Invalid input or request body
       security:
         - token: []
-  /deleteaccount:
+  /delete-account:
     delete:
       tags:
         - USER
@@ -127,45 +127,19 @@ paths:
           description: Invalid input or request body
       security:
         - token: []
-  /updateuser:
-    patch:
-      tags:
-        - USER
-      summary: update account
-      description: update account
-      operationId: update account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/createaccount' # Gunakan skema yang sesuai di sini
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/createaccount'
-        '400':
-          description: Invalid input or request body
-      security:
-        - token: []
-  /createfilm:
+  /forgot-password:
     post:
       tags:
-        - FILM
-      summary: create film
-      description: create film
-      operationId: create film
+        - USER
+      summary: update password
+      description: update password
+      operationId: update password
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Createfilm' # Gunakan skema yang sesuai di sini
+              $ref: '#/components/schemas/Auth' # Gunakan skema yang sesuai di sini
       responses:
         '200':
           description: successful operation
@@ -174,81 +148,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Createfilm'
+                  $ref: '#/components/schemas/Auth'
         '400':
           description: Invalid input or request body
       security:
-        - token: []
-  /updatedfilm:
-    patch:
-      tags:
-        - FILM
-      summary: update film
-      description: update film
-      operationId: update film
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Createfilm' # Gunakan skema yang sesuai di sini
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Createfilm'
-        '400':
-          description: Invalid input or request body
-      security:
-        - token: []
-  /deletefilm:
-    delete:
-      tags:
-        - FILM
-      summary: delete film
-      description: delete film
-      operationId: delete film
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Createfilm' # Gunakan skema yang sesuai di sini
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Createfilm'
-        '400':
-          description: Invalid input or request body
-      security:
-        - token: []
-  /getallfilm:
-    get:
-      tags:
-        - FILM
-      summary: GET FILM
-      description: GET FILM
-      operationId: GET FILM
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/createaccount'
-        '405':
-          description: Invalid input
-      security:
-        - token: []          
+        - token: []    
 components:
   schemas: 
     CreateRating:
@@ -366,15 +270,15 @@ components:
     createaccount:
       type: object
       required:
-        - email
+        - username
         - password
         - name
         - role
       properties:
-        email:
+        username:
           type: string
-          format: email
-          description: email
+          format: username
+          description: username
         password:
           type: string
           format: password
